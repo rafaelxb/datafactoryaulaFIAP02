@@ -1,0 +1,16 @@
+{
+	"name": "MySqlCarloca",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "MySql",
+		"typeProperties": {
+			"connectionString": "server=129.213.131.233;port=400;database=carloca;user=root;sslmode=1;usesystemtruststore=0",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI5NmE5NDBjNi03Y2Y0LTQwZjYtODFjNS1jNDlhODA4YmNjMjciLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime01",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
