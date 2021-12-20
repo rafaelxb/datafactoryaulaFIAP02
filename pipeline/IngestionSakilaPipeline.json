@@ -96,7 +96,18 @@
 							"outputs": [
 								{
 									"referenceName": "Parquet01",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"container": "ingestion",
+										"folder": {
+											"value": "@item().table_schema",
+											"type": "Expression"
+										},
+										"file": {
+											"value": "@concat(item().table_name, '/', item().table_name, '.parquet')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
