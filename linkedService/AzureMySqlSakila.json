@@ -1,0 +1,12 @@
+{
+	"name": "AzureMySqlSakila",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureMySql",
+		"typeProperties": {
+			"connectionString": "server=aulamappingrafaelx.mysql.database.azure.com;port=3306;database=sakila;uid=rafaelx@aulamappingrafaelx;sslmode=1;usesystemtruststore=0",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEM3OEEzNjk5LTE4QzAtNDFCRC04OUExLTUyNzY4MjUyQkFBMV84Y2FmMTZkOS04NTUyLTRjODItOWIyYS1hMjdiOGMwYzNlYjUiDQp9"
+		}
+	}
+}
