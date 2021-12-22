@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "Parquet2",
+						"referenceName": "ParquetAluguelCliente",
 						"type": "DatasetReference"
 					},
 					"name": "SinkSaida"
