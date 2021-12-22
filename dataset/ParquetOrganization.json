@@ -9,10 +9,7 @@
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
-				"type": "AzureBlobFSLocation",
-				"fileName": "aluguelfull.parquet",
-				"folderPath": "AluguelCliente",
-				"fileSystem": "organization"
+				"type": "AzureBlobFSLocation"
 			},
 			"compressionCodec": "snappy"
 		},
