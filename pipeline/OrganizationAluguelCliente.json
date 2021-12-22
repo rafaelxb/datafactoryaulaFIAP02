@@ -21,7 +21,7 @@
 						"datasetParameters": {
 							"SinkSaida": {
 								"container": "organization",
-								"folder": "AluguelCliente",
+								"folder": "aluguelcliente",
 								"file": "aluguelfull.parquet"
 							}
 						}
