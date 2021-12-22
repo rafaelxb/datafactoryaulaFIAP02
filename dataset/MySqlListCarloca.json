@@ -1,0 +1,12 @@
+{
+	"name": "MySqlListCarloca",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "MySqlCarloca",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "MySqlTable",
+		"schema": []
+	}
+}

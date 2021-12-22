@@ -20,9 +20,88 @@
 						"query": "SELECT TABLE_SCHEMA, TABLE_NAME FROM information_schema.tables where table_schema = 'carloca'"
 					},
 					"dataset": {
-						"referenceName": "MySqlTableCarlocaLocacao",
+						"referenceName": "MySqlListCarloca",
 						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "ForEachTablesCarloca",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "LookupListCarloca",
+						"dependencyConditions": [
+							"Succeeded"
+						]
 					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('LookupListCarloca').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "ExportTableCarloca",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "MySqlSource"
+								},
+								"sink": {
+									"type": "JsonSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "JsonWriteSettings"
+									}
+								},
+								"enableStaging": false
+							},
+							"inputs": [
+								{
+									"referenceName": "MySqlTableIndividual",
+									"type": "DatasetReference",
+									"parameters": {
+										"tableName": {
+											"value": "@item().table_name",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "JsonTest",
+									"type": "DatasetReference",
+									"parameters": {
+										"container": "ingestion",
+										"folder": {
+											"value": "@item().table_schema",
+											"type": "Expression"
+										},
+										"file": {
+											"value": "@concat(item().table_name, '/', item().table_name, '.json')",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
 				}
 			}
 		],
