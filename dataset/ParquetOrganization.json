@@ -1,0 +1,21 @@
+{
+	"name": "ParquetOrganization",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageAula",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "file.parquet",
+				"folderPath": "joinparquetsakila",
+				"fileSystem": "organization"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
