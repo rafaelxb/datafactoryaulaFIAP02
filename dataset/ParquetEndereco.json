@@ -1,0 +1,54 @@
+{
+	"name": "ParquetEndereco",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageAula",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "endereco.parquet",
+				"folderPath": "sakila/endereco",
+				"fileSystem": "ingestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "endereco_id",
+				"type": "INT32"
+			},
+			{
+				"name": "endereco",
+				"type": "UTF8"
+			},
+			{
+				"name": "endereco2",
+				"type": "UTF8"
+			},
+			{
+				"name": "bairro",
+				"type": "UTF8"
+			},
+			{
+				"name": "cidade_id",
+				"type": "INT32"
+			},
+			{
+				"name": "cep",
+				"type": "UTF8"
+			},
+			{
+				"name": "telefone",
+				"type": "UTF8"
+			},
+			{
+				"name": "ultima_atualizacao",
+				"type": "INT96"
+			}
+		]
+	}
+}

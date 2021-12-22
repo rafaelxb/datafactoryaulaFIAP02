@@ -1,0 +1,49 @@
+{
+	"name": "DataFlowJoin",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ParquetAluguel",
+						"type": "DatasetReference"
+					},
+					"name": "SourceAluguel"
+				},
+				{
+					"dataset": {
+						"referenceName": "ParquetTableCliente",
+						"type": "DatasetReference"
+					},
+					"name": "SourceCliente"
+				},
+				{
+					"dataset": {
+						"referenceName": "ParquetEndereco",
+						"type": "DatasetReference"
+					},
+					"name": "SourceEndereco"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ParquetOrganization",
+						"type": "DatasetReference"
+					},
+					"name": "SaidaAluguelClienteEndereco"
+				}
+			],
+			"transformations": [
+				{
+					"name": "JoinAluguelCliente"
+				},
+				{
+					"name": "JoinAluguelClienteEndereco"
+				}
+			],
+			"script": "source(output(\n\t\taluguel_id as integer,\n\t\tdata_de_aluguel as timestamp,\n\t\tinventario_id as integer,\n\t\tcliente_id as integer,\n\t\tdata_de_devolucao as timestamp,\n\t\tfuncionario_id as byte,\n\t\tultima_atualizacao as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> SourceAluguel\nsource(output(\n\t\tcliente_id as integer,\n\t\tloja_id as byte,\n\t\tprimeiro_nome as string,\n\t\tultimo_nome as string,\n\t\temail as string,\n\t\tendereco_id as integer,\n\t\tativo as boolean,\n\t\tdata_criacao as timestamp,\n\t\tultima_atualizacao as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> SourceCliente\nsource(output(\n\t\tendereco_id as integer,\n\t\tendereco as string,\n\t\tendereco2 as string,\n\t\tbairro as string,\n\t\tcidade_id as integer,\n\t\tcep as string,\n\t\ttelefone as string,\n\t\tultima_atualizacao as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tformat: 'parquet') ~> SourceEndereco\nSourceAluguel, SourceCliente join(SourceAluguel@cliente_id == SourceCliente@cliente_id,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> JoinAluguelCliente\nJoinAluguelCliente, SourceEndereco join(SourceCliente@endereco_id == SourceEndereco@endereco_id,\n\tjoinType:'inner',\n\tbroadcast: 'auto')~> JoinAluguelClienteEndereco\nJoinAluguelClienteEndereco sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tumask: 0022,\n\tpreCommands: [],\n\tpostCommands: [],\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SaidaAluguelClienteEndereco"
+		}
+	}
+}

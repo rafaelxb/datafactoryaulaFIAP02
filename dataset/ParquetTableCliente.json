@@ -1,0 +1,58 @@
+{
+	"name": "ParquetTableCliente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageAula",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "cliente.parquet",
+				"folderPath": "sakila/cliente",
+				"fileSystem": "ingestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "cliente_id",
+				"type": "INT32"
+			},
+			{
+				"name": "loja_id",
+				"type": "INT_8"
+			},
+			{
+				"name": "primeiro_nome",
+				"type": "UTF8"
+			},
+			{
+				"name": "ultimo_nome",
+				"type": "UTF8"
+			},
+			{
+				"name": "email",
+				"type": "UTF8"
+			},
+			{
+				"name": "endereco_id",
+				"type": "INT32"
+			},
+			{
+				"name": "ativo",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "data_criacao",
+				"type": "INT96"
+			},
+			{
+				"name": "ultima_atualizacao",
+				"type": "INT96"
+			}
+		]
+	}
+}

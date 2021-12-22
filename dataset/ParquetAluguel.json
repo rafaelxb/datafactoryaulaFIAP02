@@ -1,0 +1,50 @@
+{
+	"name": "ParquetAluguel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorageAula",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "aluguel.parquet",
+				"folderPath": "sakila/aluguel",
+				"fileSystem": "ingestion"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "aluguel_id",
+				"type": "INT32"
+			},
+			{
+				"name": "data_de_aluguel",
+				"type": "INT96"
+			},
+			{
+				"name": "inventario_id",
+				"type": "INT32"
+			},
+			{
+				"name": "cliente_id",
+				"type": "INT32"
+			},
+			{
+				"name": "data_de_devolucao",
+				"type": "INT96"
+			},
+			{
+				"name": "funcionario_id",
+				"type": "INT_8"
+			},
+			{
+				"name": "ultima_atualizacao",
+				"type": "INT96"
+			}
+		]
+	}
+}
