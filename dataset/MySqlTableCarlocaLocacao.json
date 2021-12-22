@@ -7,9 +7,6 @@
 		},
 		"annotations": [],
 		"type": "MySqlTable",
-		"schema": [],
-		"typeProperties": {
-			"tableName": "`loc_pedido_locacao`"
-		}
+		"schema": []
 	}
 }
